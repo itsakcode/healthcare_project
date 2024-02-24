@@ -21,34 +21,21 @@ def get_data_types(df):
     
     return col_data_types
 
-def get_unique_values(df, cat_columns):
-    '''
-    
-    '''
-    unique_values_list = []
+def get_unique_values(df, category_columns):
+        '''
+            Get unique values and their count of all category columns in a
+            dataframe.
+        '''
+        col_unique_values = {}
+        try:
+            
+            for col in category_columns:
+                col_unique_values[col] = df[col].value_counts().to_dict()
 
-    try:
-        for column in cat_columns:
-            unique_values = df[column].unique()
-            unique_values_list.append(unique_values)
+        except Exception as ex:
+            print(f"get_unique_values:Error {ex}")
 
-        # Find the maximum value among all columns
-        max_length = max(len(values) for values in unique_values_list)
-
-        unique_df = pd.DataFrame(columns=cat_columns)
-
-        # Iterate over each column and fill with unique values, 
-        # padding with NaN if necessary
-        for i, column in enumerate(cat_columns):
-            unique_values = unique_values_list[i]
-            padded_values = np.append(unique_values, [np.nan] * (max_length - len(unique_values)))
-            unique_df[column] = padded_values
-
-        return unique_df
-    except Exception as ex:
-            print(f"get_unique_values:Error: {ex}")
-
-    return None
+        return col_unique_values
 
 def check_unique_values(df, cat_columns):
     '''
