@@ -1,0 +1,14 @@
+
+Who has advantage - Home team or visitors?
+
+Analyze ELO ratings  - pre game, post game.
+
+what is the probability that elo is predicting correct?
+
+How does the quarter back elo rating impact the team?
+
+
+
+Data Analysis - 
+
+    
