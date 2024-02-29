@@ -1,11 +1,10 @@
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import accuracy_score, balanced_accuracy_score
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report, r2_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from xgboost import XGBClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import AdaBoostRegressor, ExtraTreesRegressor, RandomForestRegressor
 from sklearn.linear_model import LinearRegression
@@ -25,8 +24,7 @@ classification_models = {
           "SVC" : SVC(kernel='poly', probability=True), 
           "KNeighbors Classifier" : KNeighborsClassifier(n_neighbors=9), 
           "DecisionTree Classifier" : DecisionTreeClassifier(), 
-          "RandomForest Classifier" : RandomForestClassifier(n_estimators=256, random_state=42),
-          'XGBoost Classifier' : XGBClassifier()
+          "RandomForest Classifier" : RandomForestClassifier(n_estimators=256, random_state=42)
 }
 
 def prepare_train_test_data(X, y, scaler=None):
@@ -52,7 +50,7 @@ def prepare_train_test_data(X, y, scaler=None):
     except Exception as ex:
         print(f"train_test_data Error: {ex}")
 
-def process_models(models, X, y, scaler=None):
+def process_models_Xy(models, X, y, scaler=None):
     '''
         Process the models by preparing training and testing data, 
         calculate accuracy score, confusion matrix and classification report
@@ -67,17 +65,9 @@ def process_models(models, X, y, scaler=None):
 
         Error: Errors will be caught and printed
     '''
-    if models == None:
-        models = { 
-            'Logistic Regression' : LogisticRegression(max_iter=250, random_state=42),
-            'RandomForest Classifier' : RandomForestClassifier(n_estimators=500, random_state=42),
-            'SVC' : SVC(),
-            'XGBoost Classifier' : XGBClassifier()
-        }
-
     model_results = {}
 
-    X_train, X_test, y_train, y_test = prepare_train_test_data(X, y, StandardScaler())
+    X_train, X_test, y_train, y_test = prepare_train_test_data(X, y, MinMaxScaler())
 
     for m_name, model in models.items():
         try:
@@ -86,22 +76,17 @@ def process_models(models, X, y, scaler=None):
             t_score = model.score(X_train, y_train)
 
             y_predict = model.predict(X_test)
-            
-            a_score = accuracy_score(y_test, y_predict)
-        
-            conf_matrix = confusion_matrix(y_test, y_predict)
-
-            class_report = classification_report(y_test, y_predict)
 
             model_results[m_name] = {
                 "model" : model,
                 "train_score" : t_score,
-                "accuracy_score" : a_score,
-                "confusion_matrix" : conf_matrix,
-                "classification_report" : class_report
+                "accuracy_score" : accuracy_score(y_test, y_predict),
+                "balanced_accuracy_score" : balanced_accuracy_score(y_test, y_predict),
+                "confusion_matrix" : confusion_matrix(y_test, y_predict),
+                "classification_report" : classification_report(y_test, y_predict)
             }
         except Exception as ex: 
-            print(f"process_models:Error: {ex}")
+            print(f"process_models:{m_name}:Error: {ex}")
     
     return model_results
 
@@ -121,14 +106,6 @@ def process_models(models, X_train, X_test, y_train, y_test):
 
         Error: Errors will be caught and printed
     '''
-    if models == None:
-        models = { 
-            'Logistic Regression' : LogisticRegression(max_iter=250, random_state=42),
-            'RandomForest Classifier' : RandomForestClassifier(n_estimators=500, random_state=42),
-            'SVC' : SVC(),
-            'XGBoost Classifier' : XGBClassifier()
-        }
-
     model_results = {}
 
     for m_name, model in models.items():
@@ -138,22 +115,14 @@ def process_models(models, X_train, X_test, y_train, y_test):
             t_score = model.score(X_train, y_train)
 
             y_predict = model.predict(X_test)
-            
-            a_score = accuracy_score(y_test, y_predict)
-
-            bal_a_score = balanced_accuracy_score(y_test, y_predict)
-        
-            conf_matrix = confusion_matrix(y_test, y_predict)
-
-            class_report = classification_report(y_test, y_predict)
 
             model_results[m_name] = {
                 "model" : model,
                 "train_score" : t_score,
-                "accuracy_score" : a_score,
-                "balanced_accuracy_score" : bal_a_score,
-                "confusion_matrix" : conf_matrix,
-                "classification_report" : class_report
+                "accuracy_score" : accuracy_score(y_test, y_predict),
+                "balanced_accuracy_score" : balanced_accuracy_score(y_test, y_predict),
+                "confusion_matrix" : confusion_matrix(y_test, y_predict),
+                "classification_report" : classification_report(y_test, y_predict)
             }
         except Exception as ex: 
             print(f"process_models:{m_name}:Error: {ex}")

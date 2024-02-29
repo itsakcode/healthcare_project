@@ -28,6 +28,39 @@ def single_binary_confusion_matrix(conf_matrix, title=None):
     plt.ylabel("Actual")
     plt.show()
 
+
+def multiple_binary_confusion_matrices(conf_matrices):
+    '''
+    
+    '''
+    colors = ['#FAA0A0','#AFE1AF']
+    custom_cmap = ListedColormap(colors)
+
+    fig, axes = plt.subplots(nrows=4, ncols=2, figsize=(15,15))
+
+    for i, (m_name, cm) in enumerate(conf_matrices.items()):
+        row = i // 2  
+        col = i % 2   
+        ax = axes[row, col] 
+        sns.heatmap(cm, annot=True, fmt="d", cmap=custom_cmap, cbar=False, ax=ax)
+
+        ax.set_title(f'Confusion Matrix - {m_name}')
+        ax.set_xlabel('Predicted')
+        ax.set_ylabel('Actual')
+
+        # Add labels to each box
+        ax.text(0.5, 0.35, 'True -ve', color='green', horizontalalignment='center', verticalalignment='center')
+        ax.text(1.5, 0.35, 'False +ve', color='darkred', horizontalalignment='center', verticalalignment='center')
+        ax.text(0.5, 1.35, 'False -ve', color='darkred', horizontalalignment='center', verticalalignment='center')
+        ax.text(1.5, 1.35, 'True +ve', color='green', horizontalalignment='center', verticalalignment='center')
+
+        ax.xaxis.set_ticklabels(['0', '1'])
+        ax.yaxis.set_ticklabels(['0', '1'])
+    
+    plt.tight_layout()
+    plt.show()
+
+
 def single_multi_confusion_matrix(conf_matrix, clabels, title=None):
     '''
     '''
@@ -66,6 +99,6 @@ def show_accuracy_scores(models_accuracy):
     plt.title('Accuracy Scores of Models')
 
     plt.xlabel('Accuracy Score')
-    plt.ylabel('Models')
+    plt.ylabel('Model')
 
     plt.show()
