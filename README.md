@@ -14,6 +14,7 @@
 ## Introduction
 - Brief overview of the project, including its objective and the problem it aims to solve.
 - Description of the dataset and the target variable.
+- more data
 - Mention of any specific techniques or algorithms used in the project.
 
 ## Data
