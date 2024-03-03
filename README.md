@@ -16,10 +16,10 @@ This project is to analyze and predict the NFL games based on ELO Ratings. Does 
 
 ## Data
 ### Source
-The dataset analyzed in this project is from [Project FiveThirtyEight](https://projects.fivethirtyeight.com/nfl-api/nfl_elo.csv). Data contains 33 features starting from 1920 until 2022. There are some features like importance was introduced very late in 2021. It contains ELO ratings for both Teams and Quarterbacks and has rating pre-game and post-game.  
+The dataset analyzed in this project is from [Project FiveThirtyEight](https://projects.fivethirtyeight.com/nfl-api/nfl_elo.csv). Data contains 33 features starting from 1920 until 2022. There are some features like importance that was introduced very late in 2021. It contains ELO ratings for Teams and Quarterbacks and has ratings for both pre-game and post-game.  
 
 ### Data Analysis
-There 33 features in dataset that are split between teams, Home team and Visiting team. There are around 17K rows and below the columns in dataset,
+There 33 features in dataset that are split between both the teams, Home and Visiting team. There are around 17K rows and below are the columns in dataset,
 
 ```
 ['date', 'season', 'neutral', 'playoff', 'team1', 'team2', 'elo1_pre',
@@ -31,7 +31,7 @@ There 33 features in dataset that are split between teams, Home team and Visitin
        'importance', 'total_rating']
 ```
 
-We have ELO ratings by team and quarter-backs like Pre-game, probability and post-game ratings. We have dates games were played and the season. We have ignored the dates and post ratings. And since the importance was not until 2021 that is also removed which removes total_rating too as it is derived from quality and importance.
+We have different ELO ratings by team and quarter-backs like pre-game, probability and post-game ratings. We have dates when games were played and the season. We have ignored the dates and post ratings. And since the importance was not until 2021 that is also removed which removes total_rating too as it is derived from quality and importance.
 
 Here is the data distribution of subset of features along with derived features (Feature Engineerin): 
 
