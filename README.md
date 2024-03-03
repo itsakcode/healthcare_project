@@ -78,13 +78,53 @@ Models were trained with different set of features, hyperparameters and training
 
 Best scores and hyper parameters from GridSearch: 
 
+Logistic Regression:  
+```
+Best Parameters: {'C': 10, 'penalty': 'l1', 'solver': 'liblinear'}
+Best Score: 0.6559197355113419
+Test Score: 0.6508407517309595
+```
+
+AdaBoosterClassifier:  
+```
+Best Parameters: {'learning_rate': 0.1, 'n_estimators': 200}
+Best Score: 0.6574033876985577
+Test Score: 0.648203099241675
+```
+
+SVC:  
+```
+Best Parameters: {'C': 1, 'gamma': 'scale', 'kernel': 'linear'}
+Best Score: 0.6546003178623334
+Test Score: 0.6571051763930102
+```
+
 ## Metrics
 
 We evaluated multiple metrics available from sklearn to determine the best model. Predictability Proba, Coefficients, Cross-validations scores, Balanced Accuracy Scores, Classification Reports and Accuracy scores. Here is one of the confusion matrix plot for Logistic Regression. 
 
 ![conf_matrix](https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/d7532ea8-406e-4997-8e35-505e730f2d98)
 
-Here is the classification reports: 
+Here is the classification reports:  
+
+```
+Logisitic Regression Classification Report
+              precision    recall  f1-score   support
+
+           0       0.60      0.50      0.55      1274
+           1       0.68      0.76      0.72      1759
+
+    accuracy                           0.65      3033
+   macro avg       0.64      0.63      0.63      3033
+weighted avg       0.65      0.65      0.64      3033
+```
+
+Cross-validation scores:  
+```
+Cross-validation scores: [0.67194197 0.66094987 0.6378628  0.6444591  0.65435356]
+Mean accuracy: 0.6539134602921078
+Standard deviation of accuracy: 0.01201449638315885
+```
 
 
 
