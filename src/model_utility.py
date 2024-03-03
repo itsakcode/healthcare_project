@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import AdaBoostRegressor, ExtraTreesRegressor, RandomForestRegressor
+from sklearn.ensemble import AdaBoostRegressor, ExtraTreesRegressor, RandomForestRegressor, AdaBoostClassifier
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.svm import SVR
@@ -24,7 +24,8 @@ classification_models = {
           "SVC" : SVC(kernel='poly', probability=True), 
           "KNeighbors Classifier" : KNeighborsClassifier(n_neighbors=9), 
           "DecisionTree Classifier" : DecisionTreeClassifier(), 
-          "RandomForest Classifier" : RandomForestClassifier(n_estimators=256, random_state=42)
+          "RandomForest Classifier" : RandomForestClassifier(n_estimators=256, random_state=42),
+          "AdaBoostClassifier" : AdaBoostClassifier(n_estimators=256)
 }
 
 def prepare_train_test_data(X, y, scaler=None):
@@ -67,7 +68,7 @@ def process_models_Xy(models, X, y, scaler=None):
     '''
     model_results = {}
 
-    X_train, X_test, y_train, y_test = prepare_train_test_data(X, y, MinMaxScaler())
+    X_train, X_test, y_train, y_test = prepare_train_test_data(X, y, StandardScaler())
 
     for m_name, model in models.items():
         try:

@@ -1,20 +1,19 @@
-import matplotlib.pyplot as plt
 import seaborn as sns
-
+import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import color_utility
 import textwrap
-import matplotlib.ticker as ticker
 
 def single_binary_confusion_matrix(conf_matrix, title=None):
     '''
         Plot a single confustion matrix whose target is binary.
     '''
     # Create a custom colormap using ListedColormap
-    colors = ['#FAA0A0','#AFE1AF']
+    colors = ['#FAA0A0','#AFE1AF', '#e19090', '#9dca9d']
     custom_cmap = ListedColormap(colors)
 
     plt.figure(figsize=(6, 4))
+    plt.clf()
     sns.heatmap(conf_matrix, annot=True, fmt="d", cmap=custom_cmap, cbar=False)
 
     # Add labels to each box
@@ -60,21 +59,6 @@ def multiple_binary_confusion_matrices(conf_matrices):
     plt.tight_layout()
     plt.show()
 
-
-def single_multi_confusion_matrix(conf_matrix, clabels, title=None):
-    '''
-    '''
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", cbar=False)
-
-    plt.xticks(ticks=range(len(clabels)), labels=clabels, rotation=0)
-    plt.yticks(ticks=range(len(clabels)), labels=clabels, rotation=0)
-
-    plt.title(f"{title if title else ""} Confusion Matrix")
-    plt.xlabel("Predicted")
-    plt.ylabel("Actual")
-    plt.show()
-
 def show_accuracy_scores(models_accuracy):
     '''
     '''
@@ -101,4 +85,42 @@ def show_accuracy_scores(models_accuracy):
     plt.xlabel('Accuracy Score')
     plt.ylabel('Model')
 
+    plt.show()
+
+def plot_team_chart(team_df, teamType):
+    '''
+        Plot team chart with total games and wins 
+        and print percentage of wins.
+    '''
+    sns.set_theme(style='ticks', context='notebook')
+    plt.figure(figsize=(12, 6))
+
+    # Plot histogram-style bars for total games
+    sns.barplot(data=team_df, x='team', y='total_games', color='#cc3333', label='Total Games')
+
+    # Plot histogram-style bars for wins
+    ax = sns.barplot(data=team_df, x='team', y='wins', color='#1cc91c', label='Wins')
+
+    plt.xticks(rotation=45)
+    plt.xlabel(f'{teamType} Teams')
+    plt.ylabel('Total Games')
+    plt.title(f'Total Games vs. Wins by {teamType} Team')
+
+    # plot the percentage of wins to check the trend
+    for p1, p2 in zip(ax.patches[:len(team_df)], ax.patches[len(team_df):]):
+        ax.annotate("", 
+                    (p1.get_x() + p1.get_width() / 2., p1.get_height()), 
+                    ha = 'center', va = 'center', 
+                    xytext = (0, 10), 
+                    textcoords = 'offset points')
+        ax.annotate(f"{p2.get_height() / team_df['total_games'].max() * 100:.1f}%", 
+                    (p2.get_x() + p2.get_width() / 2., p2.get_height()), 
+                    ha = 'center', va = 'center', 
+                    xytext = (0, 10), 
+                    textcoords = 'offset points', 
+                    fontsize=9, color='white')
+
+    plt.legend()
+
+    plt.tight_layout()
     plt.show()
