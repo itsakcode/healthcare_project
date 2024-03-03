@@ -33,18 +33,38 @@ There 33 features in dataset that are split between teams, Home team and Visitin
 
 We have ELO ratings by team and quarter-backs like Pre-game, probability and post-game ratings. We have dates games were played and the season. We have ignored the dates and post ratings. And since the importance was not until 2021 that is also removed which removes total_rating too as it is derived from quality and importance.
 
+Here is the data distribution of subset of features along with derived features (Feature Engineerin): 
+
+![Features_distribution](https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/6ee33ea7-8b48-4d1e-a6ac-1e5192043513)
+
+
 ### Preprocessing
 
 As mentioned above after removing certain features, and focusing on all pre-game and prob ratings, we got around 15K rows. There are no null's in this data which is good. The main data target is not part of the dataset, but considering the game prediction we have derived the Winner by comparing scores and assigning a binary score 0 for Home Team win and 1 for Visitors. 
 
 Other feature engineering includes ELO difference between teams and quarter backs. 
 
-Data analysis shows how the Home team has adavantage and also shows how the ELO ratings favor Home team, it is not very obvious but there is a slight +ve impact to  Home teams.
+Data analysis shows how the Home team has adavantage and also shows how the ELO ratings favor Home team, it is not very obvious but there is a slight +ve impact to  Home teams.  
+
+The ELO ratings and how the winners are distributed:  
+<img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/cc67c1b2-7c74-4250-97d3-592b9c70e042" alt="ELO Rating vs Winner" width="600" height="400">  
+
+The ELO ratings differences and how the winners are distributed:  
+<img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/d749a85e-baeb-455d-9c88-810f3183625c" alt="ELO Difference vs Winner" width="600" height="400">  
+
+Heatmap with all main features:  
+<img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/5eafa4b1-535a-41a1-bdbe-a77332359bf4" alt="Heatmap" width="600" height="400">  
+
+Quarterback ELO ratings difference and how winners are distributed:  
+<img src="Visualizations and Modeled Predictions/Images/qb_elo_diff_with_winner.png" alt="Quarterback ELO Difference vs Winner" width="600" height="400">  
 
 ## Modeling
 ### Approach
-- Explanation of the chosen machine learning approach (e.g., supervised, unsupervised, or semi-supervised).
-- Justification for the selected approach based on the problem and the nature of the data.
+
+Taking all the main features (mainly ELO ratings) we have processed the data to evaluate different Classification models. Splitting the data with features and target and then training and testing data. Have scaled the training and test data. Below are the accuracy scores for all classification models trained on,  
+
+<img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/6c7bdbdf-62dd-4d0e-b298-9495bdce0f7c" alt="Accuracy Scores of all Models" width="600" height="400">  
+
 ### Model Selection
 - Description of the models considered for the task and the rationale behind their selection.
 - Comparison of different algorithms, if applicable.
