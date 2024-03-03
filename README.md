@@ -52,11 +52,14 @@ The ELO ratings and how the winners are distributed:
 The ELO ratings differences and how the winners are distributed:  
 <img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/d749a85e-baeb-455d-9c88-810f3183625c" alt="ELO Difference vs Winner" width="600" height="400">  
 
-Heatmap with all main features:  
-<img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/5eafa4b1-535a-41a1-bdbe-a77332359bf4" alt="Heatmap" width="600" height="400">  
+ELO Probability vs Scores and how winners are distributed:  
+<img src="Visualizations and Modeled Predictions/Images/Elo_Probability_vs_Score.png" alt="ELO Prob vs Scores" width="600" height="400">  
 
 Quarterback ELO ratings difference and how winners are distributed:  
 <img src="Visualizations and Modeled Predictions/Images/qb_elo_diff_with_winner.png" alt="Quarterback ELO Difference vs Winner" width="600" height="400">  
+
+Heatmap with all main features:  
+<img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/5eafa4b1-535a-41a1-bdbe-a77332359bf4" alt="Heatmap" width="600" height="400">  
 
 ## Modeling
 ### Approach
