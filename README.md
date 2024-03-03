@@ -66,16 +66,22 @@ Taking all the main features (mainly ELO ratings) we have processed the data to 
 <img src="https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/6c7bdbdf-62dd-4d0e-b298-9495bdce0f7c" alt="Accuracy Scores of all Models" width="600" height="400">  
 
 ### Model Selection
-- Description of the models considered for the task and the rationale behind their selection.
-- Comparison of different algorithms, if applicable.
+
+After reviewing all the classification models, Logistic Regression, AdaBooster and SVC seems to be closer. Performed more analysis using GridSearch with different hyperparameters for these 3 models. Logistic Regression and SVC came closer or similar to each other. Considering the cost of processing we went with Logistic Regression. 
+
 ### Training and Evaluation
-- Details of how the models were trained, including hyperparameter tuning and cross-validation.
-- Evaluation metrics used to assess model performance, along with their interpretation.
-- Discussion of the results, including any challenges encountered and insights gained from the modeling process.
+
+Models were trained with different set of features, hyperparameters and training sets. We changed training sets with different sizes and random states. Checking the accuracy for each set, getting coefficients and determining what features impacts and evaluating the scores as we process.
+
+Best scores and hyper parameters from GridSearch: 
 
 ## Metrics
-- Explanation of the evaluation metrics used to assess the performance of the model(s).
-- Justification for why these specific metrics were chosen and how they relate to the project's objectives.
-- Interpretation of the metric values and their implications for the model's effectiveness.
+
+We evaluated multiple metrics available from sklearn to determine the best model. Predictability Proba, Coefficients, Cross-validations scores, Balanced Accuracy Scores, Classification Reports and Accuracy scores. Here is one of the confusion matrix plot for Logistic Regression. 
+
+![conf_matrix](https://github.com/itsakcode/nfl_elo_predictions/assets/93089647/d7532ea8-406e-4997-8e35-505e730f2d98)
+
+Here is the classification reports: 
+
 
 
