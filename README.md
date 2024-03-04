@@ -9,6 +9,7 @@
   - [Model Selection](#model-selection)
   - [Training and Evaluation](#training-and-evaluation)
 - [Metrics](#metrics)
+- [Conclusion](#conclusion)
 
 
 ## Introduction
@@ -126,5 +127,10 @@ Mean accuracy: 0.6539134602921078
 Standard deviation of accuracy: 0.01201449638315885
 ```
 
+## Conclusion
+
+Based on the analysis done we have some what good results from Logistic Regression and need to explore more on optimizing it by adding other features.  
+Also, work on other data elements that impact NFL games and incorporate that to out model to optimize. 
+Use this model to different other games, use the dataset from other form of games and make it more generic to predict any ELO Rated games. 
 
 
